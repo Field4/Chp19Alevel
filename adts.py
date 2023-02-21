@@ -98,7 +98,7 @@ class BinaryNode:
             self.__right.nodeprint()
 
 
-# Stack ADT class definition
+# Stack class definition
 class Stack:
     def __init__(self):
         self.__array = ["", "", "", "", "", "", "", "", "", ""]
@@ -123,6 +123,45 @@ class Stack:
             return popped
 
     def getstack(self):
+        return self.__array
+
+
+# Queue class definition
+class Queue:
+    def __init__(self):
+        self.__array = ["" for i in range(10)]
+        self.__front = -1
+        self.__end = -1
+
+    def enqueue(self, val):
+        self.__front += 1
+        if self.__front == 10:
+            self.__front = 0
+        if self.__front < self.__end:
+            self.__front -= 1
+            if self.__front == -1:
+                self.__front = 10
+            return "Queue full cannot enqueue"
+        else:
+            self.__array[self.__front] = val
+            return "Enqueued"
+
+    def dequeue(self):
+        self.__end += 1
+        if self.__end == 10:
+            self.__end = 0
+        if self.__end > self.__front:
+            self.__end -= 1
+            if self.__end == -1:
+                self.__end = 10
+            return "Queue empty cannot dequeue"
+        else:
+            if self.__end == 0:
+                return self.__array[10]
+            else:
+                return self.__array[self.__end - 1]
+
+    def getqueue(self):
         return self.__array
 
 
@@ -152,15 +191,3 @@ def stackpop():
         length -= 1
         top -= 1
         return popped
-
-
-# Test for Linked List
-
-root = LinkedListNode(5)
-root.insertval(6)
-root.insertval(8)
-root.insertval(7)
-root.printlist()
-root.deletenode(7)
-print("7 deleted")
-root.printlist()
