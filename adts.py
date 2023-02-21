@@ -106,6 +106,25 @@ class Stack:
         self.__max = 10
         self.__length = 0
 
+    def pushvalue(self, val):
+        if self.__length <= self.__max:
+            self.__array[self.__top + 1] = val
+            self.__length += 1
+            return "Added"
+        else:
+            return "Stack full"
+
+    def popvalue(self):
+        if self.__length == 0:
+            return "No values, cannot pop"
+        else:
+            popped = self.__array.pop(self.__top)
+            self.__top -= 1
+            return popped
+
+    def getstack(self):
+        return self.__array
+
 
 # Test for Linked List
 
