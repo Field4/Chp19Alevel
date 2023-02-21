@@ -98,7 +98,17 @@ class BinaryNode:
             self.__right.nodeprint()
 
 
+# Stack ADT definition
+class Stack:
+    def __init__(self):
+        self.__array = ["", "", "", "", "", "", "", "", "", ""]
+        self.__top = -1
+        self.__max = 10
+        self.__length = 0
+
+
 # Test for Linked List
+
 root = LinkedListNode(5)
 root.insertval(6)
 root.insertval(8)
