@@ -191,3 +191,41 @@ def stackpop():
         length -= 1
         top -= 1
         return popped
+
+
+# Queue array definition
+queue = ["" for i in range(10)]
+front = -1
+end = -1
+
+
+def enqueue(val):
+    global queue, front, end
+    front += 1
+    if front == 10:
+        front = 0
+    if front < end:
+        front -= 1
+        if front == -1:
+            front = 10
+        return "Queue full cannot enqueue"
+    else:
+        queue[front] = val
+        return "Enqueued"
+
+
+def dequeue():
+    global queue, front, end
+    end += 1
+    if end == 10:
+        end = 0
+    if end > front:
+        end -= 1
+        if end == -1:
+            end = 10
+        return "Queue empty cannot dequeue"
+    else:
+        if end == 0:
+            return queue[10]
+        else:
+            return queue[end - 1]
