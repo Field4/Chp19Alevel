@@ -88,6 +88,7 @@ class BinaryNode:
             self.__right.nodeprint()
 
 
+# Test for Linked List
 root = LinkedListNode(5)
 root.insertval(6)
 root.insertval(8)

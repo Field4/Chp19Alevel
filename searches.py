@@ -3,6 +3,7 @@ def linear_search(array, item):
     for i in range(len(array)):
         if array[i] == item:
             return True
+    return False
 
 
 def binary_search(array, item):
@@ -17,6 +18,7 @@ def binary_search(array, item):
             lowerbound = index + 1
         else:
             upperbound = index - 1
+    return False
 
 
 values = [1, 4, 67, 35, 49, 69, 84, 325, 84]
