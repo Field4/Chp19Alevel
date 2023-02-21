@@ -101,22 +101,21 @@ class BinaryNode:
 # Stack class definition
 class Stack:
     def __init__(self):
-        self.__array = ["", "", "", "", "", "", "", "", "", ""]
+        self.__array = []
         self.__top = -1
-        self.__max = 10
-        self.__length = 0
+        self.__full = 10
 
     def pushvalue(self, val):
-        if self.__length <= self.__max:
-            self.__array[self.__top + 1] = val
-            self.__length += 1
-            return "Added"
-        else:
+        if self.__top == self.__full - 1:
             return "Stack full"
+        else:
+            self.__top += 1
+            self.__array[self.__top] = val
+            return "Push successful"
 
     def popvalue(self):
-        if self.__length == 0:
-            return "No values, cannot pop"
+        if self.__top == -1:
+            return "Stack empty"
         else:
             popped = self.__array.pop(self.__top)
             self.__top -= 1
@@ -131,101 +130,97 @@ class Queue:
     def __init__(self):
         self.__array = ["" for i in range(10)]
         self.__front = -1
-        self.__end = -1
+        self.__end = 0
+        self.__size = 0
+        self.__maxsize = 10
 
     def enqueue(self, val):
-        self.__front += 1
-        if self.__front == 10:
-            self.__front = 0
-        if self.__front < self.__end:
-            self.__front -= 1
-            if self.__front == -1:
-                self.__front = 10
-            return "Queue full cannot enqueue"
-        else:
-            self.__array[self.__front] = val
+        if self.__size < self.__maxsize:
+            if self.__end < 9:
+                self.__end += 1
+            else:
+                self.__end = 0
+            self.__size += 1
+            self.__array[self.__end] = val
             return "Enqueued"
+        else:
+            return "queue is full"
 
     def dequeue(self):
-        self.__end += 1
-        if self.__end == 10:
-            self.__end = 0
-        if self.__end > self.__front:
-            self.__end -= 1
-            if self.__end == -1:
-                self.__end = 10
-            return "Queue empty cannot dequeue"
+        if self.__size == 0:
+            return "queue is empty"
         else:
-            if self.__end == 0:
-                return self.__array[10]
+            item = self.__array[self.__front]
+            if self.__front == len(self.__array) - 1:
+                self.__front = 0
             else:
-                return self.__array[self.__end - 1]
+                self.__front += 1
+        self.__size -= 1
+        return item
 
     def getqueue(self):
         return self.__array
 
 
+
+
 # Stack Array definition
 stack = ["" for i in range(10)]
 top = -1
-length = 0
+stackfull = 10
 
 
 def stackpush(val):
-    global stack, top, length
-    if length == len(stack) + 1:
+    global stack, top,stackfull
+    if top == stackfull - 1:
         return "Stack full"
     else:
         top += 1
         stack[top] = val
-        length += 1
         return "Push successful"
 
 
 def stackpop():
-    global stack, length, top
-    if length == 0:
+    global stack, top
+    if top == -1:
         return "Stack empty"
     else:
         popped = stack.pop(top)
-        length -= 1
         top -= 1
         return popped
 
 
 # Queue array definition
 queue = ["" for i in range(10)]
-front = -1
-end = -1
+front = 0
+end = 0
+maxsize = 10
+size = 0
 
 
 def enqueue(val):
-    global queue, front, end
-    front += 1
-    if front == 10:
-        front = 0
-    if front < end:
-        front -= 1
-        if front == -1:
-            front = 10
-        return "Queue full cannot enqueue"
-    else:
-        queue[front] = val
+    global queue, front, end, maxsize, size
+    if size < maxsize:
+        if end < 9:
+            end += 1
+        else:
+            end = 0
+        size += 1
+        queue[end] = val
         return "Enqueued"
+    else:
+        return "queue is full"
 
 
 def dequeue():
-    global queue, front, end
-    end += 1
-    if end == 10:
-        end = 0
-    if end > front:
-        end -= 1
-        if end == -1:
-            end = 10
-        return "Queue empty cannot dequeue"
+    global queue, front, end, maxsize, size
+    if size == 0:
+        return "queue is empty"
     else:
-        if end == 0:
-            return queue[10]
+        item = queue[front]
+        if front == len(queue) - 1:
+            front = 0
         else:
-            return queue[end - 1]
+            front += 1
+    size -= 1
+    return item
