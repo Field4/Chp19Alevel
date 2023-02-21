@@ -98,7 +98,7 @@ class BinaryNode:
             self.__right.nodeprint()
 
 
-# Stack ADT definition
+# Stack ADT class definition
 class Stack:
     def __init__(self):
         self.__array = ["", "", "", "", "", "", "", "", "", ""]
@@ -124,6 +124,34 @@ class Stack:
 
     def getstack(self):
         return self.__array
+
+
+# Stack Array definition
+stack = ["" for i in range(10)]
+top = -1
+length = 0
+
+
+def stackpush(val):
+    global stack, top, length
+    if length == len(stack) + 1:
+        return "Stack full"
+    else:
+        top += 1
+        stack[top] = val
+        length += 1
+        return "Push successful"
+
+
+def stackpop():
+    global stack, length, top
+    if length == 0:
+        return "Stack empty"
+    else:
+        popped = stack.pop(top)
+        length -= 1
+        top -= 1
+        return popped
 
 
 # Test for Linked List
