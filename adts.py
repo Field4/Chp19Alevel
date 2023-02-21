@@ -1,10 +1,10 @@
-# Linked lists as nodes
+# Linked list as nodes
 class LinkedListNode:
     def __init__(self, value):
         self.__value = value
         self.__nextNode = None
 
-    def insertval(self, val):
+    def insertval(self, val):  # inserts a new node into the linked list
         if self.__value == val:
             return "already inserted"
         elif self.__nextNode is None:
@@ -18,7 +18,7 @@ class LinkedListNode:
         else:
             return self.__nextNode.insertval(val)
 
-    def deletenode(self, val):
+    def deletenode(self, val):  # deletes specified node from linked list
         if self.__value > val:
             return "Not in list"
         elif self.__value < val and self.__nextNode.getvalue() == val:
@@ -41,6 +41,16 @@ class LinkedListNode:
         print(self.__value)
         if self.__nextNode is not None:
             self.__nextNode.printlist()
+
+    def find(self, val):  # finds specified value in linked list
+        if self.__value == val:
+            return "found"
+        elif self.__value > val:
+            return "not found"
+        elif self.__value < val and self.__nextNode is not None:
+            return self.__nextNode.find(val)
+        else:
+            return "not found"
 
 
 # Binary tree as Nodes
