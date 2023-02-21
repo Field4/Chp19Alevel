@@ -1,5 +1,4 @@
 def linear_search(array, item):
-    i = 0
     for i in range(len(array)):
         if array[i] == item:
             return True
