@@ -19,4 +19,4 @@ def insertionsort(a):
         while j >= 0 and a[j] > temp:
             a[j + 1] = a[j]
             j -= 1
-        a[j] = temp
+        a[j+1] = temp
